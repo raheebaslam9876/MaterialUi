@@ -15,9 +15,19 @@ const useStyles = makeStyles({
 const Test = () => {
     const [title, setTitle] = useState('')
     const [detail, setDetail] = useState('')
+    const [titleError, settitleError] = useState(false)
+    const [detailError, setdetailError] = useState(false)
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (title == '') {
+            settitleError(true)
+        }
+        if (detail == '') {
+            setdetailError(true)
+        }
+
         if (title && detail) {
             console.log(title, detail)
         }
@@ -31,6 +41,7 @@ const Test = () => {
                     color="textsecondary"
                     gutterBottom
                     component="h2"
+
                 >
                     Hello world
                 </Typography>
@@ -43,6 +54,7 @@ const Test = () => {
                         color='secondary'
                         fullWidth
                         required
+                        error={titleError}
                         sx={{ marginBottom: 5, display: "block" }}
                     />
                     <TextField
@@ -53,6 +65,7 @@ const Test = () => {
                         fullWidth
                         required
                         multiline
+                        error={detailError}
                         rows={4}
                         sx={{ marginBottom: 5, display: "block" }}
                     />
